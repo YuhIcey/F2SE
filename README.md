@@ -2,4 +2,4 @@
 Fallout 2 Script Extender - By Frank
 
 
-It May have some placeholder addresses still
+F2SE Has been moved into the Project known as F2MPx this has been cancelled for all Singleplayer use and stays unstable for all future problems
