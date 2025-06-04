@@ -1,8 +1,9 @@
 #include <windows.h>
-#include <detours.h>
+#include "MinHook.h"
 #include <iostream>
 #include <vector>
 #include <string>
+#include "MP/Multiplayer.h"
 
 // Base address of Fallout2.exe (you'll need to adjust this based on your version)
 #define FALLOUT2_BASE 0x00400000
@@ -137,17 +138,17 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
             orig_ScriptProc = (tScriptProc)GetFallout2Function(0x5678);  // Replace with actual offset
             orig_GameInit = (tGameInit)GetFallout2Function(0x9ABC);  // Replace with actual offset
 
-            // Install hooks
-            DetourTransactionBegin();
-            DetourUpdateThread(GetCurrentThread());
-            
-            DetourAttach(&(PVOID&)orig_MainLoop, Hook_MainLoop);
-            DetourAttach(&(PVOID&)orig_ScriptProc, Hook_ScriptProc);
-            DetourAttach(&(PVOID&)orig_GameInit, Hook_GameInit);
-            
-            LONG error = DetourTransactionCommit();
-            if (error != NO_ERROR) {
-                std::cout << "F2SE: Failed to install hooks" << std::endl;
+            if (MH_Initialize() != MH_OK) {
+                std::cout << "F2SE: MinHook init failed" << std::endl;
+                return FALSE;
+            }
+
+            MH_CreateHook(reinterpret_cast<LPVOID>(orig_MainLoop), reinterpret_cast<LPVOID>(Hook_MainLoop), reinterpret_cast<LPVOID*>(&orig_MainLoop));
+            MH_CreateHook(reinterpret_cast<LPVOID>(orig_ScriptProc), reinterpret_cast<LPVOID>(Hook_ScriptProc), reinterpret_cast<LPVOID*>(&orig_ScriptProc));
+            MH_CreateHook(reinterpret_cast<LPVOID>(orig_GameInit), reinterpret_cast<LPVOID>(Hook_GameInit), reinterpret_cast<LPVOID*>(&orig_GameInit));
+
+            if (MH_EnableHook(MH_ALL_HOOKS) != MH_OK) {
+                std::cout << "F2SE: Failed to enable hooks" << std::endl;
                 return FALSE;
             }
 
@@ -155,6 +156,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
 
             // Load plugins
             LoadPlugin("plugins/example.dll");
+
+            // Start multiplayer sync thread
+            StartMultiplayer();
             break;
         }
         
@@ -163,15 +167,12 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
                 break;
             }
 
-            // Uninstall hooks
-            DetourTransactionBegin();
-            DetourUpdateThread(GetCurrentThread());
-            
-            DetourDetach(&(PVOID&)orig_MainLoop, Hook_MainLoop);
-            DetourDetach(&(PVOID&)orig_ScriptProc, Hook_ScriptProc);
-            DetourDetach(&(PVOID&)orig_GameInit, Hook_GameInit);
-            
-            DetourTransactionCommit();
+            MH_DisableHook(MH_ALL_HOOKS);
+            MH_Uninitialize();
+
+
+            // Stop multiplayer thread
+            StopMultiplayer();
 
             // Unload plugins
             UnloadPlugins();

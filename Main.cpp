@@ -1,7 +1,7 @@
-#include <Windows.h>
+#include <windows.h>
 #include <iostream>
 #include <string>
-#include <TlHelp32.h>
+#include <tlhelp32.h>
 #include "Game/GameAddresses.h"
 #include "Game/SkillSystem.h"
 #include <format>
