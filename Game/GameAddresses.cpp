@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <stdexcept>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 int8_t GameAddresses::GetStat(uintptr_t address) {
     int8_t value = 0;
@@ -40,4 +40,4 @@ bool GameAddresses::IsValidStatValue(int8_t value, int8_t min, int8_t max) {
     return value >= min && value <= max;
 }
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

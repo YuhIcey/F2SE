@@ -11,14 +11,14 @@ HINSTANCE g_hInstance = nullptr;
 bool g_isRunning = false;
 HHOOK g_keyboardHook = nullptr;
 bool g_consoleVisible = false;
-const char* VERSION = "F2SE v0.01";
+const char* VERSION = "F2MPx v0.01";
 HANDLE g_gameProcess = nullptr;
 DWORD g_processId = 0;
 HWND g_consoleWindow = nullptr;
 
 // Function declarations
-bool InitializeF2SE();
-void ShutdownF2SE();
+bool InitializeF2MPx();
+void ShutdownF2MPx();
 void ShowError(const std::string& message);
 bool LaunchGame();
 void SetupConsole();
@@ -45,9 +45,9 @@ int WINAPI WinMain(
             return 1;
         }
 
-        // Initialize F2SE
-        if (!InitializeF2SE()) {
-            ShowError("Failed to initialize F2SE");
+        // Initialize F2MPx
+        if (!InitializeF2MPx()) {
+            ShowError("Failed to initialize F2MPx");
             return 1;
         }
 
@@ -84,7 +84,7 @@ int WINAPI WinMain(
             Sleep(10); // Prevent high CPU usage
         }
 
-        ShutdownF2SE();
+        ShutdownF2MPx();
         return static_cast<int>(msg.wParam);
     }
     catch (const std::exception& e) {
@@ -93,19 +93,19 @@ int WINAPI WinMain(
     }
 }
 
-bool InitializeF2SE() {
+bool InitializeF2MPx() {
     // Initialize systems
-    if (!F2SE::Game::SkillSystem::Initialize()) {
+    if (!F2MPx::Game::SkillSystem::Initialize()) {
         ShowError("Failed to initialize Skill System");
         return false;
     }
 
     // TODO: Initialize other systems
-    std::cout << "F2SE initialized successfully\n";
+    std::cout << "F2MPx initialized successfully\n";
     return true;
 }
 
-void ShutdownF2SE() {
+void ShutdownF2MPx() {
     // Unhook keyboard
     if (g_keyboardHook) {
         UnhookWindowsHookEx(g_keyboardHook);
@@ -126,7 +126,7 @@ void ShutdownF2SE() {
 }
 
 void ShowError(const std::string& message) {
-    MessageBoxA(nullptr, message.c_str(), "F2SE Error", MB_OK | MB_ICONERROR);
+    MessageBoxA(nullptr, message.c_str(), "F2MPx Error", MB_OK | MB_ICONERROR);
 }
 
 void SetupConsole() {

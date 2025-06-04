@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <functional>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Hooks {
 
 // Hook types
@@ -72,4 +72,4 @@ private:
 };
 
 } // namespace Hooks
-} // namespace F2SE 
+} // namespace F2MPx 

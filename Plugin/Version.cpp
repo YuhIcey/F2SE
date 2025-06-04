@@ -1,7 +1,7 @@
 #include "Version.h"
 #include <sstream>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 Version::Version(uint32_t major, uint32_t minor, uint32_t patch)
     : _major(major), _minor(minor), _patch(patch) {
@@ -81,4 +81,4 @@ uint32_t Version::GetPatch() const {
     return _patch;
 }
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

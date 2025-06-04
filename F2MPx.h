@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <string>
 
-namespace F2SE {
+namespace F2MPx {
 
 // Version information
 constexpr int VERSION_MAJOR = 0;
@@ -81,4 +81,4 @@ extern "C" {
     PlayerData* __declspec(dllexport) GetPlayerData();
 }
 
-} // namespace F2SE 
+} // namespace F2MPx 

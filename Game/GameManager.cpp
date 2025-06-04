@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include <iostream>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Game {
 
 GameManager& GameManager::GetInstance() {
@@ -14,23 +14,23 @@ bool GameManager::Initialize() {
         return true;
     }
 
-    std::cout << "F2SE: Detecting game version..." << std::endl;
+    std::cout << "F2MPx: Detecting game version..." << std::endl;
     _version = DetectGameVersion();
     
     if (_version == GameVersion::Unknown) {
-        std::cout << "F2SE: Failed to detect game version" << std::endl;
+        std::cout << "F2MPx: Failed to detect game version" << std::endl;
         return false;
     }
 
     InitializeAddresses();
     
     if (!ValidateAddresses()) {
-        std::cout << "F2SE: Failed to validate game addresses" << std::endl;
+        std::cout << "F2MPx: Failed to validate game addresses" << std::endl;
         return false;
     }
 
     _initialized = true;
-    std::cout << "F2SE: Game Manager initialized for version " 
+    std::cout << "F2MPx: Game Manager initialized for version " 
               << (_version == GameVersion::US_102 ? "US 1.02" : "US 1.02d") 
               << std::endl;
     return true;
@@ -220,4 +220,4 @@ bool GameManager::ValidateAddresses() {
 }
 
 } // namespace Game
-} // namespace F2SE 
+} // namespace F2MPx 

@@ -5,7 +5,7 @@
 #include <vector>
 #include <deque>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Script {
 
 // Console command history entry
@@ -67,4 +67,4 @@ private:
 };
 
 } // namespace Script
-} // namespace F2SE 
+} // namespace F2MPx 

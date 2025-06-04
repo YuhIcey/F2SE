@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 class Actor;
 
@@ -74,4 +74,4 @@ private:
     std::vector<CombatAction> _queuedActions;
 };
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

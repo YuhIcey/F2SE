@@ -6,7 +6,7 @@
 #include <vector>
 #include <functional>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Script {
 
 // Command flags
@@ -128,4 +128,4 @@ END_COMMAND;
 */
 
 } // namespace Script
-} // namespace F2SE 
+} // namespace F2MPx 

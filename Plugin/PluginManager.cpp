@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <fstream>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 // Fallout 2 supported file extensions
 const std::vector<std::string> SUPPORTED_EXTENSIONS = {
@@ -457,7 +457,7 @@ bool PluginManager::ValidatePlugin(const PluginInfo& info) const {
         return false;
     }
 
-    // Check F2SE version compatibility
+    // Check F2MPx version compatibility
     // You would need to implement proper version comparison here
 
     return true;
@@ -491,4 +491,4 @@ void PluginManager::NotifyPluginEvent(const std::string& event, const std::strin
     // This would be called for various system events that plugins might want to handle
 }
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

@@ -54,14 +54,14 @@ int __stdcall Hook_ScriptProc(void* script, int param) {
 
 void __stdcall Hook_GameInit() {
     // Pre game init
-    std::cout << "F2SE: Initializing..." << std::endl;
+    std::cout << "F2MPx: Initializing..." << std::endl;
 
     // Call original init
     orig_GameInit();
 
     // Post game init
     g_gameInitialized = true;
-    std::cout << "F2SE: Initialization complete" << std::endl;
+    std::cout << "F2MPx: Initialization complete" << std::endl;
 }
 
 // Plugin system
@@ -79,7 +79,7 @@ bool LoadPlugin(const char* pluginPath) {
     plugin.handle = LoadLibraryA(pluginPath);
     
     if (!plugin.handle) {
-        std::cout << "F2SE: Failed to load plugin: " << pluginPath << std::endl;
+        std::cout << "F2MPx: Failed to load plugin: " << pluginPath << std::endl;
         return false;
     }
 
@@ -87,20 +87,20 @@ bool LoadPlugin(const char* pluginPath) {
     plugin.Shutdown = (void (__cdecl *)(void))GetProcAddress(plugin.handle, "Shutdown");
     
     if (!plugin.Initialize || !plugin.Shutdown) {
-        std::cout << "F2SE: Plugin missing required functions: " << pluginPath << std::endl;
+        std::cout << "F2MPx: Plugin missing required functions: " << pluginPath << std::endl;
         FreeLibrary(plugin.handle);
         return false;
     }
 
     if (!plugin.Initialize()) {
-        std::cout << "F2SE: Plugin initialization failed: " << pluginPath << std::endl;
+        std::cout << "F2MPx: Plugin initialization failed: " << pluginPath << std::endl;
         FreeLibrary(plugin.handle);
         return false;
     }
 
     plugin.name = pluginPath;
     plugins.push_back(plugin);
-    std::cout << "F2SE: Loaded plugin: " << pluginPath << std::endl;
+    std::cout << "F2MPx: Loaded plugin: " << pluginPath << std::endl;
     return true;
 }
 
@@ -130,7 +130,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
             FILE* dummy;
             freopen_s(&dummy, "CONOUT$", "w", stdout);
 
-            std::cout << "F2SE: Initializing Script Extender..." << std::endl;
+            std::cout << "F2MPx: Initializing Script Extender..." << std::endl;
 
             // Get original function addresses
             orig_MainLoop = (tMainLoop)GetFallout2Function(0x1234);  // Replace with actual offset
@@ -147,11 +147,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
             
             LONG error = DetourTransactionCommit();
             if (error != NO_ERROR) {
-                std::cout << "F2SE: Failed to install hooks" << std::endl;
+                std::cout << "F2MPx: Failed to install hooks" << std::endl;
                 return FALSE;
             }
 
-            std::cout << "F2SE: Hooks installed successfully" << std::endl;
+            std::cout << "F2MPx: Hooks installed successfully" << std::endl;
 
             // Load plugins
             LoadPlugin("plugins/example.dll");

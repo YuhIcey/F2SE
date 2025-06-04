@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <iostream>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 Plugin::Plugin(const std::string& path)
     : _path(path), _handle(nullptr), _isInitialized(false) {
@@ -148,4 +148,4 @@ void Plugin::OnUpdate(float deltaTime) {
     // Regular update logic here
 }
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

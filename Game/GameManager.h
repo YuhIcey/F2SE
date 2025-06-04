@@ -4,7 +4,7 @@
 #include "../Memory/MemoryManager.h"
 #include <string>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Game {
 
 class GameManager {
@@ -66,4 +66,4 @@ private:
 };
 
 } // namespace Game
-} // namespace F2SE 
+} // namespace F2MPx 

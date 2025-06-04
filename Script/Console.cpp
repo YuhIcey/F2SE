@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Script {
 
 Console& Console::GetInstance() {
@@ -16,7 +16,7 @@ bool Console::Initialize() {
         return true;
     }
 
-    std::cout << "F2SE: Initializing Console..." << std::endl;
+    std::cout << "F2MPx: Initializing Console..." << std::endl;
     
     // Initialize console state
     _visible = false;
@@ -26,7 +26,7 @@ bool Console::Initialize() {
     _history.clear();
 
     _initialized = true;
-    std::cout << "F2SE: Console initialized" << std::endl;
+    std::cout << "F2MPx: Console initialized" << std::endl;
     return true;
 }
 
@@ -73,12 +73,12 @@ void Console::ExecuteCommand(const std::string& command) {
     
     // Display result
     if (result.success) {
-        std::cout << "F2SE: Command executed successfully" << std::endl;
+        std::cout << "F2MPx: Command executed successfully" << std::endl;
         if (result.result.type == ScriptParamType::String) {
             std::cout << "Result: " << result.result.stringValue << std::endl;
         }
     } else {
-        std::cout << "F2SE: Command failed - " << result.error << std::endl;
+        std::cout << "F2MPx: Command failed - " << result.error << std::endl;
     }
 
     // Clear current command
@@ -275,4 +275,4 @@ void Console::UpdateDisplay() {
 }
 
 } // namespace Script
-} // namespace F2SE 
+} // namespace F2MPx 

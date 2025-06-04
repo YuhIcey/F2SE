@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <cstdint>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 // Memory addresses for different game versions
 struct GameAddresses {
@@ -115,4 +115,4 @@ struct DamageComputation {
 };
 #pragma pack(pop)
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

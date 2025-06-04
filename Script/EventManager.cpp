@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
-namespace F2SE::Script {
+namespace F2MPx::Script {
 
 EventManager& EventManager::GetInstance() {
     static EventManager instance;
@@ -116,4 +116,4 @@ void EventManager::CleanupEvents() {
     }
 }
 
-} // namespace F2SE::Script 
+} // namespace F2MPx::Script 

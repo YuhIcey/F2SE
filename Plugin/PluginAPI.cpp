@@ -1,7 +1,7 @@
 #include "PluginAPI.h"
 #include <iostream>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 bool PluginAPI::Initialize() {
     if (_initialized) {
@@ -75,4 +75,4 @@ std::vector<std::string> PluginAPI::GetRegisteredFunctions() const {
     return result;
 }
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 
