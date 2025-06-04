@@ -7,7 +7,7 @@
 #include <functional>
 #include <filesystem>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 // Forward declarations
 class Plugin;
@@ -31,7 +31,7 @@ struct PluginInfo {
     std::string author;
     std::string description;
     Version version;
-    Version minF2SEVersion;
+    Version minF2MPxVersion;
     std::vector<std::string> dependencies;
     std::vector<std::string> incompatibilities;
     bool hasScripts;
@@ -156,4 +156,4 @@ private:
     void NotifyPluginEvent(const std::string& event, const std::string& plugin);
 };
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

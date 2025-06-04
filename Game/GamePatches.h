@@ -1,6 +1,6 @@
 #pragma once
 
-namespace F2SE {
+namespace F2MPx {
 namespace Game {
 
 // Memory patterns to find addresses dynamically
@@ -95,4 +95,4 @@ private:
 };
 
 } // namespace Game
-} // namespace F2SE 
+} // namespace F2MPx 

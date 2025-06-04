@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <vector>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Memory {
 
 class MemoryManager {
@@ -55,4 +55,4 @@ private:
 };
 
 } // namespace Memory
-} // namespace F2SE 
+} // namespace F2MPx 

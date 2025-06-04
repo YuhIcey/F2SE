@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 struct Version {
     int major;
@@ -102,4 +102,4 @@ protected:
     bool _initialized{false};
 };
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

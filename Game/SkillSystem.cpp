@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <stdexcept>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 bool SkillSystem::Initialize() {
     return InstallHooks();
@@ -108,4 +108,4 @@ bool SkillSystem::ValidateSkillLevel(int level) {
     return level >= MIN_SKILL_LEVEL && level <= MAX_SKILL_LEVEL;
 }
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

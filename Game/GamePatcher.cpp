@@ -2,7 +2,7 @@
 #include <vector>
 #include "GamePatches.h"
 
-namespace F2SE {
+namespace F2MPx {
 namespace Game {
 
 GamePatcher& GamePatcher::GetInstance() {
@@ -194,4 +194,4 @@ bool GamePatcher::ReadMemory(DWORD address, void* buffer, size_t size) {
 }
 
 } // namespace Game
-} // namespace F2SE 
+} // namespace F2MPx 

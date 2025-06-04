@@ -1,7 +1,7 @@
 #include "GameState.h"
 #include <iostream>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Game {
 
 GameState& GameState::GetInstance() {
@@ -220,4 +220,4 @@ bool GameState::LoadState(const std::string& filename) {
 }
 
 } // namespace Game
-} // namespace F2SE 
+} // namespace F2MPx 

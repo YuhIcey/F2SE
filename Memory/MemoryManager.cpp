@@ -3,7 +3,7 @@
 #include <iostream>
 #include <psapi.h>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Memory {
 
 MemoryManager& MemoryManager::GetInstance() {
@@ -17,12 +17,12 @@ bool MemoryManager::Initialize() {
     }
 
     if (!GetModuleInfo()) {
-        std::cout << "F2SE: Failed to get module information" << std::endl;
+        std::cout << "F2MPx: Failed to get module information" << std::endl;
         return false;
     }
 
     _initialized = true;
-    std::cout << "F2SE: Memory Manager initialized" << std::endl;
+    std::cout << "F2MPx: Memory Manager initialized" << std::endl;
     return true;
 }
 
@@ -51,7 +51,7 @@ bool MemoryManager::ReadMemory(DWORD address, void* buffer, size_t size) {
         return true;
     }
     __except(EXCEPTION_EXECUTE_HANDLER) {
-        std::cout << "F2SE: Memory read failed at " << std::hex << address << std::endl;
+        std::cout << "F2MPx: Memory read failed at " << std::hex << address << std::endl;
         return false;
     }
 }
@@ -63,7 +63,7 @@ bool MemoryManager::WriteMemory(DWORD address, const void* buffer, size_t size) 
 
     DWORD oldProtection;
     if (!VirtualProtect((LPVOID)address, size, PAGE_EXECUTE_READWRITE, &oldProtection)) {
-        std::cout << "F2SE: Failed to unprotect memory at " << std::hex << address << std::endl;
+        std::cout << "F2MPx: Failed to unprotect memory at " << std::hex << address << std::endl;
         return false;
     }
 
@@ -74,7 +74,7 @@ bool MemoryManager::WriteMemory(DWORD address, const void* buffer, size_t size) 
     }
     __except(EXCEPTION_EXECUTE_HANDLER) {
         VirtualProtect((LPVOID)address, size, oldProtection, &oldProtection);
-        std::cout << "F2SE: Memory write failed at " << std::hex << address << std::endl;
+        std::cout << "F2MPx: Memory write failed at " << std::hex << address << std::endl;
         return false;
     }
 }
@@ -281,4 +281,4 @@ bool MemoryManager::ValidateAddress(DWORD address, size_t size) {
 }
 
 } // namespace Memory
-} // namespace F2SE 
+} // namespace F2MPx 

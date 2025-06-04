@@ -4,7 +4,7 @@
 #include <string>
 #include <windows.h>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Core {
 
 class ScriptExtender {
@@ -34,4 +34,4 @@ private:
 };
 
 } // namespace Core
-} // namespace F2SE 
+} // namespace F2MPx 

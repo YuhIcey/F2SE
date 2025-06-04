@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace F2SE::Plugin {
+namespace F2MPx::Plugin {
 
 class PluginAPI {
 public:
@@ -25,4 +25,4 @@ private:
     std::unordered_map<std::string, std::function<void*()>> _functions;
 };
 
-} // namespace F2SE::Plugin 
+} // namespace F2MPx::Plugin 

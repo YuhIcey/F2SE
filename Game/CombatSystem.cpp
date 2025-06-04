@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 bool CombatSystem::Initialize() {
     if (_inCombat) {
@@ -207,4 +207,4 @@ void CombatSystem::SetInitiative(uint32_t actorId, int32_t initiative) {
     }
 }
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

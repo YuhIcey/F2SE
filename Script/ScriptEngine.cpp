@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace F2SE {
+namespace F2MPx {
 namespace Script {
 
 ScriptEngine& ScriptEngine::GetInstance() {
@@ -16,13 +16,13 @@ bool ScriptEngine::Initialize() {
         return true;
     }
 
-    std::cout << "F2SE: Initializing Script Engine..." << std::endl;
+    std::cout << "F2MPx: Initializing Script Engine..." << std::endl;
 
     // Register default commands
     RegisterDefaultCommands();
 
     _initialized = true;
-    std::cout << "F2SE: Script Engine initialized" << std::endl;
+    std::cout << "F2MPx: Script Engine initialized" << std::endl;
     return true;
 }
 
@@ -36,12 +36,12 @@ void ScriptEngine::Shutdown() {
 
 bool ScriptEngine::RegisterCommand(const CommandInfo& cmd) {
     if (_commands.find(cmd.name) != _commands.end()) {
-        std::cout << "F2SE: Command '" << cmd.name << "' already registered" << std::endl;
+        std::cout << "F2MPx: Command '" << cmd.name << "' already registered" << std::endl;
         return false;
     }
 
     _commands[cmd.name] = cmd;
-    std::cout << "F2SE: Registered command '" << cmd.name << "'" << std::endl;
+    std::cout << "F2MPx: Registered command '" << cmd.name << "'" << std::endl;
     return true;
 }
 
@@ -296,4 +296,4 @@ void ScriptEngine::RegisterDefaultCommands() {
 }
 
 } // namespace Script
-} // namespace F2SE 
+} // namespace F2MPx 

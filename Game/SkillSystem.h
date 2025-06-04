@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <array>
 
-namespace F2SE::Game {
+namespace F2MPx::Game {
 
 class SkillSystem {
 public:
@@ -70,4 +70,4 @@ private:
     static constexpr int MAX_TAG_SKILLS = 4;
 };
 
-} // namespace F2SE::Game 
+} // namespace F2MPx::Game 

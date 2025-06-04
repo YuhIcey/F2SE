@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 
-namespace F2SE {
+namespace F2MPx {
 
 // Version information
 constexpr int VERSION_MAJOR = 0;
@@ -257,4 +257,4 @@ public:
     virtual const char* GetVersion() = 0;
 };
 
-} // namespace F2SE 
+} // namespace F2MPx 

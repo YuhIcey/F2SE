@@ -9,7 +9,7 @@
 #include <variant>
 #include <memory>
 
-namespace F2SE::Script {
+namespace F2MPx::Script {
 
 // Event data types specific to Fallout 2
 using EventData = std::variant<
@@ -79,4 +79,4 @@ private:
     std::mutex _eventMutex;
 };
 
-} // namespace F2SE::Script 
+} // namespace F2MPx::Script 

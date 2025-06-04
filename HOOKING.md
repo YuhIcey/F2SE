@@ -1,40 +1,40 @@
-# F2SE Hooking System Documentation
+# F2MPx Hooking System Documentation
 
 ## Overview
 
-The Fallout 2 Script Extender (F2SE) uses a sophisticated hooking system to integrate with various game processes and extend their functionality. This document explains the key hooking mechanisms and their purposes.
+The Fallout 2 Script Extender (F2MPx) uses a sophisticated hooking system to integrate with various game processes and extend their functionality. This document explains the key hooking mechanisms and their purposes.
 
 ## Save Game Integration
 
 ### Save Process Hook
-F2SE hooks into Fallout 2's save game process at two key points:
+F2MPx hooks into Fallout 2's save game process at two key points:
 1. Pre-Save: Called before the game writes its save data
-   - Allows F2SE to prepare additional data that needs to be saved
+   - Allows F2MPx to prepare additional data that needs to be saved
    - Can prevent saving if script-extended features are in an unsafe state
    - Triggers the `OnPreSave` event for scripts to handle pre-save cleanup
 
 2. Post-Save: Called after the game has written its save data
-   - Writes F2SE-specific data to a co-save file (.F2SE)
+   - Writes F2MPx-specific data to a co-save file (.F2MPx)
    - Stores extended script data, custom forms, and plugin state
    - Triggers the `OnPostSave` event for scripts
 
 ### Load Process Hook
-Similarly, F2SE hooks the load process:
+Similarly, F2MPx hooks the load process:
 1. Pre-Load: Called before the game loads save data
-   - Validates F2SE co-save file existence and version compatibility
+   - Validates F2MPx co-save file existence and version compatibility
    - Prepares script engine for state restoration
    - Triggers the `OnPreLoad` event
 
 2. Post-Load: Called after game data is loaded
-   - Reads and restores F2SE-specific data
+   - Reads and restores F2MPx-specific data
    - Relinks script references and reconstructs plugin state
    - Triggers the `OnPostLoad` event
 
 ### Co-Save File Structure
-The F2SE co-save file (.F2SE) contains:
+The F2MPx co-save file (.F2MPx) contains:
 ```
 Header:
-- Magic number ('F2SE')
+- Magic number ('F2MPx')
 - Version information
 - Save timestamp
 
@@ -53,7 +53,7 @@ State Information:
 ## Memory Hooks
 
 ### Direct Memory Access
-F2SE uses several methods to access and modify game memory:
+F2MPx uses several methods to access and modify game memory:
 1. **Virtual Memory Hooks**
    - Patches specific memory addresses to redirect execution
    - Uses trampolines for safe function interception
@@ -100,9 +100,9 @@ Plugins can register for various events:
 ```cpp
 // Example plugin hook registration
 void RegisterPluginHooks() {
-    F2SE::HookManager::Register(HookType::PreSave, OnPreSave);
-    F2SE::HookManager::Register(HookType::PostLoad, OnPostLoad);
-    F2SE::HookManager::Register(HookType::GameLoop, OnFrame);
+    F2MPx::HookManager::Register(HookType::PreSave, OnPreSave);
+    F2MPx::HookManager::Register(HookType::PostLoad, OnPostLoad);
+    F2MPx::HookManager::Register(HookType::GameLoop, OnFrame);
 }
 ```
 
@@ -110,7 +110,7 @@ void RegisterPluginHooks() {
 Plugins can define custom hook points:
 ```cpp
 // Example custom hook definition
-F2SE::HookPoint* customHook = F2SE::HookManager::CreateHook(
+F2MPx::HookPoint* customHook = F2MPx::HookManager::CreateHook(
     "MyPlugin::CustomEvent",
     0x004A5B60,  // Memory address
     HookType::Call,
@@ -143,13 +143,13 @@ F2SE::HookPoint* customHook = F2SE::HookManager::CreateHook(
 ## Debugging
 
 ### Hook Debugging
-F2SE provides several debugging tools:
+F2MPx provides several debugging tools:
 ```cpp
 // Enable hook debugging
-F2SE::HookManager::SetDebugMode(true);
+F2MPx::HookManager::SetDebugMode(true);
 
 // Log hook events
-F2SE::HookManager::LogHookEvent(
+F2MPx::HookManager::LogHookEvent(
     "SaveGame",
     "Pre-save hook executed",
     LogLevel::Debug
@@ -160,7 +160,7 @@ F2SE::HookManager::LogHookEvent(
 Tools for validating memory operations:
 ```cpp
 // Validate memory region
-bool isValid = F2SE::Memory::ValidateAddress(
+bool isValid = F2MPx::Memory::ValidateAddress(
     address,
     size,
     MemoryFlags::Read | MemoryFlags::Write
@@ -170,17 +170,17 @@ bool isValid = F2SE::Memory::ValidateAddress(
 ## Extended Features
 
 ### Input System Extension
-F2SE enhances the game's input system:
+F2MPx enhances the game's input system:
 ```cpp
 // Register custom key bindings
-F2SE::InputManager::RegisterHotkey(
+F2MPx::InputManager::RegisterHotkey(
     "MyMod::SpecialAction",
     VK_F5,
     [](){ /* Custom action */ }
 );
 
 // Extended input events
-F2SE::InputManager::RegisterInputHandler(
+F2MPx::InputManager::RegisterInputHandler(
     InputEventType::MouseWheel,
     [](const InputEvent& e) {
         // Handle mouse wheel for custom UI
@@ -195,7 +195,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Add custom HUD elements
    ```cpp
    // Create custom menu
-   auto menu = F2SE::UI::CreateMenu("MyMod::CustomMenu");
+   auto menu = F2MPx::UI::CreateMenu("MyMod::CustomMenu");
    menu->AddElement(
        "Button",
        {x: 100, y: 100, width: 200, height: 30},
@@ -209,7 +209,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Dynamic item modifications
    ```cpp
    // Add custom item property
-   F2SE::Items::RegisterProperty(
+   F2MPx::Items::RegisterProperty(
        "CustomDurability",
        PropertyType::Float,
        100.0f  // default value
@@ -221,7 +221,7 @@ F2SE::InputManager::RegisterInputHandler(
 1. **Extended Script Functions**
    ```cpp
    // Register custom script function
-   F2SE::ScriptEngine::RegisterFunction(
+   F2MPx::ScriptEngine::RegisterFunction(
        "GetCustomStat",
        [](ScriptContext& ctx) {
            auto statId = ctx.GetArg<int>(0);
@@ -233,7 +233,7 @@ F2SE::InputManager::RegisterInputHandler(
 2. **Event System**
    ```cpp
    // Register custom event
-   F2SE::Events::Register(
+   F2MPx::Events::Register(
        "OnCustomAction",
        [](const EventArgs& args) {
            // Handle custom event
@@ -249,7 +249,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Dynamic world events
    ```cpp
    // Add custom map marker
-   F2SE::WorldMap::AddMarker(
+   F2MPx::WorldMap::AddMarker(
        {x: 1500, y: 2000},
        "CustomLocation",
        MarkerType::Quest
@@ -262,7 +262,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Dynamic NPC scheduling
    ```cpp
    // Register custom AI package
-   F2SE::AI::RegisterPackage(
+   F2MPx::AI::RegisterPackage(
        "CustomBehavior",
        [](NPC* npc) {
            // Implement custom behavior
@@ -278,7 +278,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Player management
    ```cpp
    // Broadcast custom event
-   F2SE::Network::Broadcast(
+   F2MPx::Network::Broadcast(
        "PlayerAction",
        {
            {"playerId", playerId},
@@ -294,7 +294,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Player interaction handlers
    ```cpp
    // Register multiplayer-aware function
-   F2SE::MP::RegisterFunction(
+   F2MPx::MP::RegisterFunction(
        "SyncedAction",
        [](const NetworkContext& ctx) {
            // Handle synchronized action
@@ -310,7 +310,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Dynamic lighting
    ```cpp
    // Register custom shader
-   F2SE::Graphics::RegisterShader(
+   F2MPx::Graphics::RegisterShader(
        "CustomEffect",
        "shaders/custom.hlsl",
        ShaderType::PostProcess
@@ -323,7 +323,7 @@ F2SE::InputManager::RegisterInputHandler(
    - Dynamic mesh modification
    ```cpp
    // Load custom model
-   auto model = F2SE::Models::Load(
+   auto model = F2MPx::Models::Load(
        "models/custom.nif",
        ModelFlags::Dynamic | ModelFlags::Animated
    );
@@ -334,7 +334,7 @@ F2SE::InputManager::RegisterInputHandler(
 1. **Extended Console Commands**
    ```cpp
    // Register debug command
-   F2SE::Console::RegisterCommand(
+   F2MPx::Console::RegisterCommand(
        "ShowCustomDebug",
        [](const CommandArgs& args) {
            // Display debug information
@@ -345,9 +345,9 @@ F2SE::InputManager::RegisterInputHandler(
 2. **Performance Monitoring**
    ```cpp
    // Monitor performance
-   F2SE::Debug::StartPerfCounter("CustomFeature");
+   F2MPx::Debug::StartPerfCounter("CustomFeature");
    // ... code to monitor ...
-   auto metrics = F2SE::Debug::StopPerfCounter("CustomFeature");
+   auto metrics = F2MPx::Debug::StopPerfCounter("CustomFeature");
    ```
 
 ### Mod Management
@@ -355,7 +355,7 @@ F2SE::InputManager::RegisterInputHandler(
 1. **Plugin Dependencies**
    ```cpp
    // Define plugin requirements
-   F2SE::Plugins::RequirePlugin(
+   F2MPx::Plugins::RequirePlugin(
        "RequiredMod.esp",
        "1.2.0",
        VersionCompare::GreaterOrEqual
@@ -365,7 +365,7 @@ F2SE::InputManager::RegisterInputHandler(
 2. **Resource Management**
    ```cpp
    // Register custom resource handler
-   F2SE::Resources::RegisterHandler(
+   F2MPx::Resources::RegisterHandler(
        ".custom",
        [](const std::string& path) {
            // Handle custom resource loading
@@ -378,7 +378,7 @@ F2SE::InputManager::RegisterInputHandler(
 1. **INI Settings**
    ```cpp
    // Register custom settings
-   F2SE::Config::RegisterSetting(
+   F2MPx::Config::RegisterSetting(
        "MyMod",
        "CustomFeature",
        true,  // default value
@@ -389,7 +389,7 @@ F2SE::InputManager::RegisterInputHandler(
 2. **User Preferences**
    ```cpp
    // Handle user preferences
-   F2SE::Preferences::Register(
+   F2MPx::Preferences::Register(
        "MyMod::Settings",
        [](json& settings) {
            // Load/save user preferences

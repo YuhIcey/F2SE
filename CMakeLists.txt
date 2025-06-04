@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(F2SE)
+project(F2MPx)
 
 # Set C++ standard to C++20
 set(CMAKE_CXX_STANDARD 20)
@@ -21,31 +21,27 @@ else()
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m32")
 endif()
 
-# Add source files
-set(SOURCES
-    src/Main.cpp
-    src/Game/GameAddresses.cpp
-    src/Game/GameAddresses.h
-    src/Game/SkillSystem.cpp
-    src/Game/SkillSystem.h
+# Collect all source files recursively
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    "*.cpp"
 )
 
 # Create the executable
-add_executable(F2SE WIN32 ${SOURCES})
+add_executable(F2MPx WIN32 ${SOURCES})
 
 # Set output directories
-set_target_properties(F2SE PROPERTIES
+set_target_properties(F2MPx PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
 # Add include directories
-target_include_directories(F2SE PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+target_include_directories(F2MPx PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Windows-specific settings
 if(WIN32)
-    target_compile_definitions(F2SE PRIVATE
+    target_compile_definitions(F2MPx PRIVATE
         WIN32_LEAN_AND_MEAN
         NOMINMAX
         _CRT_SECURE_NO_WARNINGS
@@ -53,7 +49,7 @@ if(WIN32)
 endif()
 
 # Link against Windows libraries
-target_link_libraries(F2SE PRIVATE
+target_link_libraries(F2MPx PRIVATE
     kernel32
     user32
 ) 
