@@ -23,11 +23,17 @@ endif()
 
 # Add source files
 set(SOURCES
-    src/Main.cpp
-    src/Game/GameAddresses.cpp
-    src/Game/GameAddresses.h
-    src/Game/SkillSystem.cpp
-    src/Game/SkillSystem.h
+    Main.cpp
+    F2SE.cpp
+    Common/MinHook/buffer.c
+    Common/MinHook/hook.c
+    Common/MinHook/trampoline.c
+    Common/MinHook/hde/hde32.c
+    Game/GameAddresses.cpp
+    Game/GameAddresses.h
+    Game/SkillSystem.cpp
+    Game/SkillSystem.h
+    MP/Multiplayer.cpp
 )
 
 # Create the executable
@@ -40,7 +46,9 @@ set_target_properties(F2SE PROPERTIES
 
 # Add include directories
 target_include_directories(F2SE PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Common
+    ${CMAKE_CURRENT_SOURCE_DIR}/Common/include
 )
 
 # Windows-specific settings
@@ -56,4 +64,5 @@ endif()
 target_link_libraries(F2SE PRIVATE
     kernel32
     user32
-) 
+    ws2_32
+)

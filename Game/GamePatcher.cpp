@@ -1,4 +1,4 @@
-#include <Windows.h>
+#include <windows.h>
 #include <vector>
 #include "GamePatches.h"
 

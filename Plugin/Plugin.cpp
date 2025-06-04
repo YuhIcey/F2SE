@@ -1,5 +1,5 @@
 #include "Plugin.h"
-#include <Windows.h>
+#include <windows.h>
 #include <iostream>
 
 namespace F2SE::Plugin {
